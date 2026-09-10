@@ -1,7 +1,11 @@
 import { Router } from "express";
+
 import {
-  criarAdmin,
-  criarAdotante,
+  criarUsuario,
+  listarUsuarios,
+  buscarUsuario,
+  atualizarUsuario,
+  excluirUsuario,
 } from "../controllers/userController";
 
 import { authMiddleware } from "../middlewares/authMiddleware";
@@ -10,17 +14,38 @@ import { adminMiddleware } from "../middlewares/adminMiddleware";
 const router = Router();
 
 router.post(
-  "/admin",
+  "/",
   authMiddleware,
   adminMiddleware,
-  criarAdmin
+  criarUsuario
 );
 
-router.post(
-  "/adotante",
+router.get(
+  "/",
   authMiddleware,
   adminMiddleware,
-  criarAdotante
+  listarUsuarios
+);
+
+router.get(
+  "/:id",
+  authMiddleware,
+  adminMiddleware,
+  buscarUsuario
+);
+
+router.put(
+  "/:id",
+  authMiddleware,
+  adminMiddleware,
+  atualizarUsuario
+);
+
+router.delete(
+  "/:id",
+  authMiddleware,
+  adminMiddleware,
+  excluirUsuario
 );
 
 export default router;
