@@ -1,6 +1,9 @@
 import express from "express";
 import cors from "cors";
-import authRoutes from "./routes/userRoutes";
+import userRoutes from "./routes/userRoutes";
+import authRoutes from "./routes/authRoutes";
+import animalRoutes from "./routes/animalRoutes"; 
+import eventoRoutes from "./routes/eventoRoutes";
 
 const app = express();
 
@@ -14,6 +17,13 @@ app.get("/", (req, res) => {
   });
 });
 
-app.use("/usuarios", authRoutes);
+
+app.use("/auth", authRoutes);
+
+app.use("/usuarios", userRoutes);
+
+app.use("/animais", animalRoutes);
+
+app.use("/eventos", eventoRoutes);
 
 export default app;

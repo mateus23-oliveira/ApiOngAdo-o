@@ -1,51 +1,54 @@
 import { Router } from "express";
 
 import {
-  criarUsuario,
-  listarUsuarios,
-  buscarUsuario,
-  atualizarUsuario,
-  excluirUsuario,
-} from "../controllers/userController";
+  criarEvento,
+  listarEventos,
+  buscarEvento,
+  atualizarEvento,
+  excluirEvento,
+} from "../controllers/eventoController";
 
 import { authMiddleware } from "../middlewares/authMiddleware";
 import { adminMiddleware } from "../middlewares/adminMiddleware";
 
 const router = Router();
 
+
 router.post(
   "/",
   authMiddleware,
   adminMiddleware,
-  criarUsuario
+  criarEvento
 );
+
 
 router.get(
   "/",
   authMiddleware,
-  adminMiddleware,
-  listarUsuarios
+  listarEventos
 );
+
 
 router.get(
   "/:id",
   authMiddleware,
-  adminMiddleware,
-  buscarUsuario
+  buscarEvento
 );
+
 
 router.put(
   "/:id",
   authMiddleware,
   adminMiddleware,
-  atualizarUsuario
+  atualizarEvento
 );
+
 
 router.delete(
   "/:id",
   authMiddleware,
   adminMiddleware,
-  excluirUsuario
+  excluirEvento
 );
 
 export default router;

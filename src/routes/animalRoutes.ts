@@ -1,51 +1,61 @@
 import { Router } from "express";
 
 import {
-  criarUsuario,
-  listarUsuarios,
-  buscarUsuario,
-  atualizarUsuario,
-  excluirUsuario,
-} from "../controllers/userController";
+  criarAnimal,
+  listarAnimais,
+  buscarAnimal,
+  atualizarAnimal,
+  excluirAnimal,
+} from "../controllers/animalController";
 
 import { authMiddleware } from "../middlewares/authMiddleware";
 import { adminMiddleware } from "../middlewares/adminMiddleware";
 
+import upload from "../middlewares/uploadMiddleware";
+
 const router = Router();
+
+
 
 router.post(
   "/",
   authMiddleware,
   adminMiddleware,
-  criarUsuario
+  upload.array("fotos", 2),
+  criarAnimal
 );
+
 
 router.get(
   "/",
   authMiddleware,
-  adminMiddleware,
-  listarUsuarios
+  listarAnimais
 );
+
+
 
 router.get(
   "/:id",
   authMiddleware,
-  adminMiddleware,
-  buscarUsuario
+  buscarAnimal
 );
+
 
 router.put(
   "/:id",
   authMiddleware,
   adminMiddleware,
-  atualizarUsuario
+  upload.array("fotos", 2),
+  atualizarAnimal
 );
+
+
 
 router.delete(
   "/:id",
   authMiddleware,
   adminMiddleware,
-  excluirUsuario
+  excluirAnimal
 );
 
 export default router;
