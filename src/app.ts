@@ -4,7 +4,7 @@ import path from "path";
 import userRoutes from "./routes/userRoutes";
 import authRoutes from "./routes/authRoutes";
 import animalRoutes from "./routes/animalRoutes"; 
-import formularioRoutes from "./routes/formularioRoutes"
+import eventoRoutes from "./routes/eventoRoutes";
 
 const app = express();
 
@@ -25,6 +25,7 @@ app.use("/usuarios", userRoutes);
 
 app.use("/animais", animalRoutes);
 
+
 app.use("/formularios", formularioRoutes);
 
 
@@ -32,5 +33,8 @@ app.use(
   "/uploads",
   express.static(path.resolve("uploads"))
 );
+
+app.use("/eventos", eventoRoutes);
+
 
 export default app;
